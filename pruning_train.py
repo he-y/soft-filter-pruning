@@ -158,18 +158,18 @@ def main():
         validate(val_loader, model, criterion)
         return
 
-    filename = os.path.join(args.save_dir, 'checkpoint.{}.{}.pth.tar'.format(args.arch, args.prefix))
-    bestname = os.path.join(args.save_dir, 'best.{}.{}.pth.tar'.format(args.arch, args.prefix))
+    filename = os.path.join(args.save_dir, 'checkpoint.{:}.{:}.pth.tar'.format(args.arch, args.prefix))
+    bestname = os.path.join(args.save_dir, 'best.{:}.{:}.pth.tar'.format(args.arch, args.prefix))
 
     m = Mask(model)
 
     m.init_length()
     print("-" * 10 + "one epoch begin" + "-" * 10)
-    print("the compression rate now is %f" % args.rate)
+    print("the compression rate now is {:}".format(args.rate))
 
     val_acc_1 = validate(val_loader, model, criterion, log)
 
-    print(" accu before is: %.3f %%" % val_acc_1)
+    print(">>>>> accu before is: {:}".format(val_acc_1))
 
     m.model = model
 
@@ -181,7 +181,7 @@ def main():
     if args.use_cuda:
         model = model.cuda()
     val_acc_2 = validate(val_loader, model, criterion, log)
-    print(" accu after is: %s %%" % val_acc_2)
+    print(">>>>> accu after is: {:}".format(val_acc_2))
 
     start_time = time.time()
     epoch_time = AverageMeter()
@@ -338,8 +338,8 @@ def save_checkpoint(state, is_best, filename, bestname):
 
 
 def print_log(print_string, log):
-    print("{}".format(print_string))
-    log.write('{}\n'.format(print_string))
+    print("{:}".format(print_string))
+    log.write('{:}\n'.format(print_string))
     log.flush()
 
 

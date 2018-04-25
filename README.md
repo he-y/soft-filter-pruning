@@ -3,11 +3,10 @@ The PyTorch implementation for [this paper](http://xuanyidong.com/publication/ij
 
 ## Requirements
 - Python 3.6
-- PyTorch = 0.3.1
-- TorchVision = 0.3.0
+- PyTorch 0.3.1
+- TorchVision 0.3.0
 
 ## Training ImageNet
-
 
 ### Usage of Pruning Training:
 We train each model from scratch by default. If you wish to train the model with pre-trained models, please use the options `--use_pretrain --lr 0.01`.
@@ -48,16 +47,16 @@ python original_train.py -a resnet50 --save_dir ./snapshots/resnet50-baseline  /
 ```
 
 ### Scripts to reproduce the results in our paper
-To train the ImageNet model with / without pruning, see the directory `scripts`
+To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
 
 The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing)
 
 ## Notes
 
-#### torchvision version
+#### Torchvision version
 We use the torchvision of 0.3.0. If the version of your torchvision is 0.2.0, then the `transforms.RandomResizedCrop` should be `transforms.RandomSizedCrop` and the `transforms.Resize` should be `transforms.Scale`.
 
-#### why use 100 epochs for training
+#### Why use 100 epochs for training
 This can obtain a sight accuracy improvement.
 
 ## Citation
