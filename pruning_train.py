@@ -173,7 +173,7 @@ def main():
 
     m.model = model
 
-    m.init(args.rate)
+    m.init_mask(args.rate)
     # m.if_zero()
     m.do_mask()
     model = m.model
