@@ -414,9 +414,11 @@ class Mask:
         if len(weight_torch.size()) == 4:
             filter_pruned_num = int(weight_torch.size()[0] * (1 - compress_rate))
             weight_vec = weight_torch.view(weight_torch.size()[0], -1)
-            norm1 = torch.norm(weight_vec, 2, 1)
-            norm1_np = norm1.cpu().numpy()
-            filter_index = norm1_np.argsort()[:filter_pruned_num]
+            # norm1 = torch.norm(weight_vec, 1, 1)
+            # norm1_np = norm1.cpu().numpy()
+            norm2 = torch.norm(weight_vec, 2, 1)
+            norm2_np = norm2.cpu().numpy()
+            filter_index = norm2_np.argsort()[:filter_pruned_num]
             #            norm1_sort = np.sort(norm1_np)
             #            threshold = norm1_sort[int (weight_torch.size()[0] * (1-compress_rate) )]
             kernel_length = weight_torch.size()[1] * weight_torch.size()[2] * weight_torch.size()[3]
