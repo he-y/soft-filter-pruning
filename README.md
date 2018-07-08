@@ -1,5 +1,5 @@
 # Soft Filter Pruning for Accelerating Deep Convolutional Neural Networks
-The PyTorch implementation for [this paper](http://xuanyidong.com/publication/ijcai-2018-sfp). This implementation refers to [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
+The PyTorch implementation for [our IJCAI 2018 paper](http://xuanyidong.com/publication/ijcai-2018-sfp). This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
 
 ## Requirements
 - Python 3.6
@@ -53,18 +53,18 @@ The trained models with log files can be found in [Google Drive](https://drive.g
 
 ## Notes
 
-#### Torchvision version
+#### Torchvision Version
 We use the torchvision of 0.3.0. If the version of your torchvision is 0.2.0, then the `transforms.RandomResizedCrop` should be `transforms.RandomSizedCrop` and the `transforms.Resize` should be `transforms.Scale`.
 
 #### Why use 100 epochs for training
-This can obtain a sight accuracy improvement.
+This can improve the accuracy slightly.
 
 ## Citation
 ```
 @inproceedings{he2018soft,
   title={Soft Filter Pruning for Accelerating Deep Convolutional Neural Networks},
   author={He, Yang and Kang, Guoliang and Dong, Xuanyi and Fu, Yanwei and Yang, Yi},
-  booktitle={International Joint Conference on Artificial Intelligence},
+  booktitle={International Joint Conference on Artificial Intelligence (IJCAI)},
   year={2018}
 }
 ```
