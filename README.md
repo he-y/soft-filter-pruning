@@ -1,5 +1,6 @@
 # Soft Filter Pruning for Accelerating Deep Convolutional Neural Networks
-The PyTorch implementation for [our IJCAI 2018 paper](http://xuanyidong.com/publication/ijcai-2018-sfp). This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
+The PyTorch implementation for [our IJCAI 2018 paper](https://www.ijcai.org/proceedings/2018/0309.pdf).
+This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
 
 ## Requirements
 - Python 3.6
@@ -62,9 +63,10 @@ This can improve the accuracy slightly.
 ## Citation
 ```
 @inproceedings{he2018soft,
-  title={Soft Filter Pruning for Accelerating Deep Convolutional Neural Networks},
-  author={He, Yang and Kang, Guoliang and Dong, Xuanyi and Fu, Yanwei and Yang, Yi},
-  booktitle={International Joint Conference on Artificial Intelligence (IJCAI)},
-  year={2018}
+  title     = {Soft Filter Pruning for Accelerating Deep Convolutional Neural Networks},
+  author    = {He, Yang and Kang, Guoliang and Dong, Xuanyi and Fu, Yanwei and Yang, Yi},
+  booktitle = {International Joint Conference on Artificial Intelligence (IJCAI)},
+  pages     = {2234--2240},
+  year      = {2018}
 }
 ```
