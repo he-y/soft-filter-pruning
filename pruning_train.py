@@ -77,7 +77,7 @@ def main():
     print_log("PyThon  version : {}".format(sys.version.replace('\n', ' ')), log)
     print_log("PyTorch version : {}".format(torch.__version__), log)
     print_log("cuDNN   version : {}".format(torch.backends.cudnn.version()), log)
-    print_log("Vision  version : {}".format(torchvision.__path___), log)
+    print_log("Vision  version : {}".format(torchvision.__version__), log)
     # create model
     print_log("=> creating model '{}'".format(args.arch), log)
     model = models.__dict__[args.arch](pretrained=True)
@@ -155,7 +155,7 @@ def main():
         num_workers=args.workers, pin_memory=True)
 
     if args.evaluate:
-        validate(val_loader, model, criterion)
+        validate(val_loader, model, criterion, log)
         return
 
     filename = os.path.join(args.save_dir, 'checkpoint.{:}.{:}.pth.tar'.format(args.arch, args.prefix))
