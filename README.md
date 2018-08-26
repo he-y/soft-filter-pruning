@@ -12,10 +12,7 @@ This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResN
 ### Usage of Pruning Training:
 We train each model from scratch by default. If you wish to train the model with pre-trained models, please use the options `--use_pretrain --lr 0.01`.
 
-### Usage of Initial with Pruned Model:
-We use unpruned model as initial model by default. If you wish to initial with pruned model, please use the options `--use_sparse --sparse path_to_pruned_model`.
-
-Run ResNet(depth 152,101,50,34,18) on Imagenet:
+Run Pruning Training ResNet (depth 152,101,50,34,18) on Imagenet:
 (the `layer_begin` and `layer_end` is the index of the first and last conv layer, `layer_inter` choose the conv layer instead of BN layer): 
 ```bash
 python pruning_train.py -a resnet152 --save_dir ./snapshots/resnet152-rate-0.7 --rate 0.7 --layer_begin 0 --layer_end 462 --layer_inter 3  /path/to/Imagenet2012
@@ -29,8 +26,10 @@ python pruning_train.py -a resnet34  --save_dir ./snapshots/resnet34-rate-0.7 --
 python pruning_train.py -a resnet18  --save_dir ./snapshots/resnet18-rate-0.7 --rate 0.7 --layer_begin 0 --layer_end 57 --layer_inter 3  /path/to/Imagenet2012
 ```
 
-### Usage of Normal Training:
+### Usage of Initial with Pruned Model:
+We use unpruned model as initial model by default. If you wish to initial with pruned model, please use the options `--use_sparse --sparse path_to_pruned_model`.
 
+### Usage of Normal Training:
 Run resnet(100 epochs): 
 ```bash
 python original_train.py -a resnet50 --save_dir ./snapshots/resnet50-baseline  /path/to/Imagenet2012 --workers 36
@@ -39,6 +38,10 @@ python original_train.py -a resnet50 --save_dir ./snapshots/resnet50-baseline  /
 ### Scripts to reproduce the results in our paper
 To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
 
+### Inference the pruned model
+```bash
+sh scripts/inference_resnet.sh
+```
 The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing)
 
 ## Notes
