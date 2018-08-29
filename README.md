@@ -52,6 +52,11 @@ We use the torchvision of 0.3.0. If the version of your torchvision is 0.2.0, th
 #### Why use 100 epochs for training
 This can improve the accuracy slightly.
 
+#### Process of ImageNet dataset
+We follow the [Facebook process of ImageNet](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md#download-the-imagenet-dataset).
+Two subfolders ("train" and "val") are included in the "/path/to/ImageNet2012".
+The correspding code is [here](https://github.com/he-y/soft-filter-pruning/blob/master/pruning_train.py#L129-L130).
+
 ## Citation
 ```
 @inproceedings{he2018soft,
