@@ -52,8 +52,9 @@ def cal_cifar_resnet_flop(layer, prune_rate):
     baseline_flop = cifar_resnet_flop(layer, 1)
 
     print(
-        "layer {:d}, pruning rate is {:.1f}, pruned_flop is {:.0f}, baseline flop is {:.0f}, pruned rate is {:.4f}".format(
-            layer, prune_rate, pruned_flop, baseline_flop, 1 - pruned_flop / baseline_flop))
+        "pruning rate of layer {:d} is {:.1f}, pruned FLOP is {:.0f}, "
+        "baseline FLOP is {:.0f}, FLOP reduction rate is {:.4f}"
+        .format(layer, prune_rate, pruned_flop, baseline_flop, 1 - pruned_flop / baseline_flop))
 
 
 if __name__ == '__main__':
