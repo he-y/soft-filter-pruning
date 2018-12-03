@@ -7,6 +7,8 @@ This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResN
 - PyTorch 0.3.1
 - TorchVision 0.3.0
 
+The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing)
+
 ## Training ImageNet
 
 ### Usage of Pruning Training:
@@ -35,14 +37,25 @@ Run resnet(100 epochs):
 python original_train.py -a resnet50 --save_dir ./snapshots/resnet50-baseline  /path/to/Imagenet2012 --workers 36
 ```
 
-### Scripts to reproduce the results in our paper
-To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
-
-### Inference the pruned model
+### Inference the pruned model with zeros
 ```bash
 sh scripts/inference_resnet.sh
 ```
-The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing)
+
+### Inference the pruned model without zeros
+```bash
+sh scripts/infer_pruned.sh
+```
+The pruned model could be downloaded at the Release page.
+
+### Scripts to reproduce the results in our paper
+To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
+
+## Training Cifar-10
+```bash
+sh scripts/cifar10_resnet.sh
+```
+Be care of the hyper-parameter [`layer_end`](https://github.com/he-y/soft-filter-pruning/blob/master/scripts/cifar10_resnet.sh#L4-L9) for different layer of ResNet.
 
 ## Notes
 
@@ -56,6 +69,9 @@ This can improve the accuracy slightly.
 We follow the [Facebook process of ImageNet](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md#download-the-imagenet-dataset).
 Two subfolders ("train" and "val") are included in the "/path/to/ImageNet2012".
 The correspding code is [here](https://github.com/he-y/soft-filter-pruning/blob/master/pruning_train.py#L129-L130).
+
+#### FLOPs Calculation
+Refer to the [file](https://github.com/he-y/soft-filter-pruning/blob/master/utils/cifar_resnet_flop.py).
 
 ## Citation
 ```
