@@ -2,16 +2,39 @@
 The PyTorch implementation for [our IJCAI 2018 paper](https://www.ijcai.org/proceedings/2018/0309.pdf).
 This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
 
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Models and log files](#models-and-log-files)
+- [Training ImageNet](#training-imagenet)
+  - [Usage of Pruning Training](#usage-of-pruning-training)
+  - [Usage of Initial with Pruned Model](#usage-of-initial-with-pruned-model)
+  - [Usage of Normal Training](#usage-of-normal-training)
+  - [Inference the pruned model with zeros](#inference-the-pruned-model-with-zeros)
+  - [Inference the pruned model without zeros](#inference-the-pruned-model-without-zeros)
+  - [Scripts to reproduce the results in our paper](#scripts-to-reproduce-the-results-in-our-paper)
+- [Training Cifar-10](#training-cifar-10)
+- [Notes](#notes)
+  - [Torchvision Version](#torchvision-version)
+  - [Why use 100 epochs for training](#why-use-100-epochs-for-training)
+  - [Process of ImageNet dataset](#process-of-imagenet-dataset)
+  - [FLOPs Calculation](#flops-calculation)
+- [Citation](#citation)
+
+
 ## Requirements
 - Python 3.6
 - PyTorch 0.3.1
 - TorchVision 0.3.0
 
-The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing)
+## Models and log files
+The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing).
+
+The pruned model without zeros: [Release page](https://github.com/he-y/soft-filter-pruning/releases/tag/ResNet50_pruned).
 
 ## Training ImageNet
 
-### Usage of Pruning Training:
+#### Usage of Pruning Training
 We train each model from scratch by default. If you wish to train the model with pre-trained models, please use the options `--use_pretrain --lr 0.01`.
 
 Run Pruning Training ResNet (depth 152,101,50,34,18) on Imagenet:
@@ -28,34 +51,34 @@ python pruning_train.py -a resnet34  --save_dir ./snapshots/resnet34-rate-0.7 --
 python pruning_train.py -a resnet18  --save_dir ./snapshots/resnet18-rate-0.7 --rate 0.7 --layer_begin 0 --layer_end 57 --layer_inter 3  /path/to/Imagenet2012
 ```
 
-### Usage of Initial with Pruned Model:
+#### Usage of Initial with Pruned Model
 We use unpruned model as initial model by default. If you wish to initial with pruned model, please use the options `--use_sparse --sparse path_to_pruned_model`.
 
-### Usage of Normal Training:
+#### Usage of Normal Training
 Run resnet(100 epochs): 
 ```bash
 python original_train.py -a resnet50 --save_dir ./snapshots/resnet50-baseline  /path/to/Imagenet2012 --workers 36
 ```
 
-### Inference the pruned model with zeros
+#### Inference the pruned model with zeros
 ```bash
 sh scripts/inference_resnet.sh
 ```
 
-### Inference the pruned model without zeros
+#### Inference the pruned model without zeros
 ```bash
 sh scripts/infer_pruned.sh
 ```
-The pruned model could be downloaded at the Release page.
+The pruned model without zeros could be downloaded at the [Release page](https://github.com/he-y/soft-filter-pruning/releases/tag/ResNet50_pruned).
 
-### Scripts to reproduce the results in our paper
+#### Scripts to reproduce the results in our paper
 To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
 
 ## Training Cifar-10
 ```bash
 sh scripts/cifar10_resnet.sh
 ```
-Be care of the hyper-parameter [`layer_end`](https://github.com/he-y/soft-filter-pruning/blob/master/scripts/cifar10_resnet.sh#L4-L9) for different layer of ResNet.
+Please be care of the hyper-parameter [`layer_end`](https://github.com/he-y/soft-filter-pruning/blob/master/scripts/cifar10_resnet.sh#L4-L9) for different layer of ResNet.
 
 ## Notes
 
@@ -83,3 +106,4 @@ Refer to the [file](https://github.com/he-y/soft-filter-pruning/blob/master/util
   year      = {2018}
 }
 ```
+
