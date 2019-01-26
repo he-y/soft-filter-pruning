@@ -446,35 +446,56 @@ class Mask:
                     self.model_length[index1] *= self.model_size[index1][index2]
 
     def init_rate(self, layer_rate):
-        for index, item in enumerate(self.model.parameters()):
-            self.compress_rate[index] = 1
-        for key in range(args.layer_begin, args.layer_end + 1, args.layer_inter):
-            self.compress_rate[key] = layer_rate
-        if args.arch == 'resnet18':
-            # last index include last fc layer
-            last_index = 60
-            skip_list = [21, 36, 51]
-        elif args.arch == 'resnet34':
-            last_index = 108
-            skip_list = [27, 54, 93]
-        elif args.arch == 'resnet50':
-            last_index = 159
-            skip_list = [12, 42, 81, 138]
-        elif args.arch == 'resnet101':
-            last_index = 312
-            skip_list = [12, 42, 81, 291]
-        elif args.arch == 'resnet152':
-            last_index = 465
-            skip_list = [12, 42, 117, 444]
-        self.mask_index = [x for x in range(0, last_index, 3)]
-        # skip downsample layer
-        if args.skip_downsample == 1:
-            for x in skip_list:
-                self.compress_rate[x] = 1
-                self.mask_index.remove(x)
-                print(self.mask_index)
-        else:
-            pass
+        if 'vgg' in args.arch:
+            cfg_5x = [24, 22, 41, 51, 108, 89, 111, 184, 276, 228, 512, 512, 512]
+            cfg_official = [64, 64, 128, 128, 256, 256, 256, 512, 512, 512, 512, 512, 512]
+            # cfg = [32, 64, 128, 128, 256, 256, 256, 256, 256, 256, 256, 256, 256]
+            cfg_index = 0
+            pre_cfg = True
+            for index, item in enumerate(self.model.named_parameters()):
+                self.compress_rate[index] = 1
+                if len(item[1].size()) == 4:
+                    print(item[1].size())
+                    if not pre_cfg:
+                        self.compress_rate[index] = layer_rate
+                        self.mask_index.append(index)
+                        print(item[0], "self.mask_index", self.mask_index)
+                    else:
+                        self.compress_rate[index] =  1 - cfg_5x[cfg_index] / item[1].size()[0]
+                        self.mask_index.append(index)
+                        print(item[0], "self.mask_index", self.mask_index, cfg_index, cfg_5x[cfg_index], item[1].size()[0],
+                               )
+                        cfg_index += 1
+        elif "resnet" in args.arch:
+            for index, item in enumerate(self.model.parameters()):
+                self.compress_rate[index] = 1
+            for key in range(args.layer_begin, args.layer_end + 1, args.layer_inter):
+                self.compress_rate[key] = layer_rate
+            if args.arch == 'resnet18':
+                # last index include last fc layer
+                last_index = 60
+                skip_list = [21, 36, 51]
+            elif args.arch == 'resnet34':
+                last_index = 108
+                skip_list = [27, 54, 93]
+            elif args.arch == 'resnet50':
+                last_index = 159
+                skip_list = [12, 42, 81, 138]
+            elif args.arch == 'resnet101':
+                last_index = 312
+                skip_list = [12, 42, 81, 291]
+            elif args.arch == 'resnet152':
+                last_index = 465
+                skip_list = [12, 42, 117, 444]
+            self.mask_index = [x for x in range(0, last_index, 3)]
+            # skip downsample layer
+            if args.skip_downsample == 1:
+                for x in skip_list:
+                    self.compress_rate[x] = 1
+                    self.mask_index.remove(x)
+                    print(self.mask_index)
+            else:
+                pass
 
     def init_mask(self, layer_rate):
         self.init_rate(layer_rate)
