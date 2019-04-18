@@ -25,7 +25,7 @@ This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResN
 ## Requirements
 - Python 3.6
 - PyTorch 0.3.1
-- TorchVision 0.3.0
+- TorchVision 0.2.0
 
 ## Models and log files
 The trained models with log files can be found in [Google Drive](https://drive.google.com/drive/folders/1lPhInbd7v3HjK9uOPW_VNjGWWm7kyS8e?usp=sharing).
@@ -82,8 +82,8 @@ Please be care of the hyper-parameter [`layer_end`](https://github.com/he-y/soft
 
 ## Notes
 
-#### Torchvision Version
-We use the torchvision of 0.3.0. If the version of your torchvision is 0.2.0, then the `transforms.RandomResizedCrop` should be `transforms.RandomSizedCrop` and the `transforms.Resize` should be `transforms.Scale`.
+#### Torch Version
+We use the torch of 0.3.1. If the version of your torch is 0.2.0, then the `transforms.RandomResizedCrop` should be `transforms.RandomSizedCrop` and the `transforms.Resize` should be `transforms.Scale`.
 
 #### Why use 100 epochs for training
 This can improve the accuracy slightly.
