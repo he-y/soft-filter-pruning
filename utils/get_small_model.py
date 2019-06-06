@@ -399,7 +399,6 @@ def get_small_model(big_model):
                       small_model.state_dict()[y].size())
 
     small_model.load_state_dict(small_state_dict)
-    torch.save(small_model, "small_model.pt")
 
     return small_model
 
