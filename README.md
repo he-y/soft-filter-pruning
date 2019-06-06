@@ -12,6 +12,7 @@ This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResN
   - [Usage of Normal Training](#usage-of-normal-training)
   - [Inference the pruned model with zeros](#inference-the-pruned-model-with-zeros)
   - [Inference the pruned model without zeros](#inference-the-pruned-model-without-zeros)
+  - [Get small model](#get-small-model)
   - [Scripts to reproduce the results in our paper](#scripts-to-reproduce-the-results-in-our-paper)
 - [Training Cifar-10](#training-cifar-10)
 - [Notes](#notes)
@@ -70,6 +71,14 @@ sh scripts/inference_resnet.sh
 sh scripts/infer_pruned.sh
 ```
 The pruned model without zeros could be downloaded at the [Release page](https://github.com/he-y/soft-filter-pruning/releases/tag/ResNet50_pruned).
+
+#### Get small model
+Get the model without zeros.
+In the below script, change the path of the resume model to the pruned-model with zeros, then both the big model (with zero) and small model (without zero) will be saved. This script support ResNet of depth 18, 34, 50, 101.
+```bash
+sh scripts/get_small.sh
+```
+
 
 #### Scripts to reproduce the results in our paper
 To train the ImageNet model with / without pruning, see the directory `scripts` (we use 8 GPUs for training).
