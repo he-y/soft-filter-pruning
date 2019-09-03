@@ -114,5 +114,17 @@ Refer to the [file](https://github.com/he-y/soft-filter-pruning/blob/master/util
   pages     = {2234--2240},
   year      = {2018}
 }
+
+@article{he2019asymptotic,
+  author={He, Yang and Dong, Xuanyi and Kang, Guoliang and Fu, Yanwei and Yan, Chenggang and Yang, Yi}, 
+  journal={IEEE Transactions on Cybernetics}, 
+  title={Asymptotic Soft Filter Pruning for Deep Convolutional Neural Networks}, 
+  year={2019}, 
+  volume={}, 
+  number={}, 
+  pages={1-11}, 
+  doi={10.1109/TCYB.2019.2933477}, 
+  ISSN={2168-2267}, 
+}
 ```
 
