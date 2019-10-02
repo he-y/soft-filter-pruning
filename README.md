@@ -2,6 +2,10 @@
 The PyTorch implementation for [our IJCAI 2018 paper](https://www.ijcai.org/proceedings/2018/0309.pdf).
 This implementation is based on [ResNeXt-DenseNet](https://github.com/D-X-Y/ResNeXt-DenseNet).
 
+## Updates:
+The journal version of this work [Asymptotic Soft Filter Pruning for Deep Convolutional Neural Networks](https://ieeexplore.ieee.org/document/8816678) is available now, code coming soon.
+
+
 ## Table of Contents
 
 - [Requirements](#requirements)
